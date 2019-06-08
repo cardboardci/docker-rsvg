@@ -11,8 +11,7 @@ RUN groupadd -r cardboardci && useradd --no-log-init -r -g cardboardci cardboard
 USER cardboardci
 
 
-LABEL \
-    org.label-schema.build-date="$BUILD_DATE" \
+LABEL maintainer="jrbeverly" \
     org.label-schema.schema-version="1.0" \
     org.label-schema.summary="Rasterize SVGs." \
     org.label-schema.description="Turn SVG files into raster images." \
@@ -22,4 +21,4 @@ LABEL \
     org.label-schema.changelog-url="https://gitlab.com/cardboardci/images/rsvg/releases" \
     org.label-schema.authoritative-source-url="https://cloud.docker.com/u/cardboardci/repository/docker/cardboardci/rsvg" \
     org.label-schema.distribution-scope="public" \
-    org.label-schema.vcs-type="git" \
+    org.label-schema.vcs-type="git"
