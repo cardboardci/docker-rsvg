@@ -42,6 +42,7 @@ build:
 bats:
   stage: "Test"
   script:
+    - apk add -U curl
     - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test
     - mv container-structure-test structure-test
     - cp structure-test /usr/local/bin
