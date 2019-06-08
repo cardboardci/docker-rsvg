@@ -1,6 +1,7 @@
-FROM alpine:3.8
-RUN apk add --update --no-cache librsvg=2.40.20-r0
+FROM ubuntu:disco
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y librsvg2-bin
 
 WORKDIR /ci
-RUN addgroup -S cardboardci && adduser -S -G cardboardci cardboardci
+RUN groupadd -r cardboardci && useradd --no-log-init -r -g cardboardci cardboardci
 USER cardboardci
