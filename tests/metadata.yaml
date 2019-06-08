@@ -1,0 +1,17 @@
+schemaVersion: "2.0.0"
+
+globalEnvVars:
+  - key: "VIRTUAL_ENV"
+    value: "/env"
+  - key: "PATH"
+    value: "/env/bin:$PATH"
+
+metadataTest:
+  labels:
+    - key: 'com.example.vendor'
+      value: 'ACME Incorporated'
+  exposedPorts: []
+  volumes: []
+  entrypoint: []
+  cmd: ["/bin/bash"]
+  workdir: "/ci"

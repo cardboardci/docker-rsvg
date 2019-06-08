@@ -16,13 +16,13 @@ stages:
 ##
 shellcheck:
   stage: "Validate"
-  image: cardboardci/shellcheck
+  image: cardboardci/shellcheck:latest
   script:
     - shellcheck provision/*.sh
 
 hadolint:
   stage: "Validate"
-  image: cardboardci/hadolint
+  image: cardboardci/hadolint:latest
   script:
     - hadolint Dockerfile*
 
@@ -39,11 +39,18 @@ build:
 ##
 ## Test
 ##
-# bats:
-#   stage: "Test"
-#   script:
-#     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-#     - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+bats:
+  stage: "Test"
+  image: ubuntu:latest
+  script:
+    - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test
+    - mv container-structure-test structure-test
+    - cp structure-test /usr/local/bin
+    - chmod +x /usr/local/bin/structure-test
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - structure-test -test.v -image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" tests/primary.yaml
+    - structure-test -test.v -image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" tests/metadata.yaml
 
 ##
 ## Analyze
@@ -66,17 +73,17 @@ build:
 ##
 ## Deploy
 ##
-docker.hub:
-  stage: "Deploy"
-  script:
-    - source deploy/hub.docker.config
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - docker tag "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" "docker.io/${HUB_NAMESPACE}/${HUB_PROJECT}:edge"
-    - echo "$HUB_REGISTRY_PASSWORD" | docker login -u "$HUB_REGISTRY_USER" --password-stdin
-    - docker push "docker.io/${HUB_NAMESPACE}/${HUB_PROJECT}:edge"
-  only:
-    - master
+# docker.hub:
+#   stage: "Deploy"
+#   script:
+#     - source deploy/hub.docker.config
+#     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
+#     - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+#     - docker tag "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" "docker.io/${HUB_NAMESPACE}/${HUB_PROJECT}:edge"
+#     - echo "$HUB_REGISTRY_PASSWORD" | docker login -u "$HUB_REGISTRY_USER" --password-stdin
+#     - docker push "docker.io/${HUB_NAMESPACE}/${HUB_PROJECT}:edge"
+#   only:
+#     - master
     
 # quay.io:
 #   stage: "Deploy"
