@@ -1,0 +1,17 @@
+---
+org.label-schema.version: <>
+org.label-schema.release: <>
+org.label-schema.build-date: <>
+org.label-schema.name: rsvg
+org.label-schema.schema-version: 1.0
+org.label-schema.summary: Rasterize SVGs.
+org.label-schema.description: Turn SVG files into raster images.
+org.label-schema.vendor: CardboardCI
+org.label-schema.architecture: amd64
+org.label-schema.url: https://gitlab.com/cardboardci/images/rsvg/
+org.label-schema.changelog-url: https://gitlab.com/cardboardci/images/rsvg/releases
+org.label-schema.authoritative-source-url: https://cloud.docker.com/u/cardboardci/repository/docker/cardboardci/rsvg
+org.label-schema.distribution-scope: public
+org.label-schema.vcs-type: git
+org.label-schema.vcs-url: gitlab.com:cardboardci/images/rsvg.git
+org.label-schema.vcs-ref: <>
