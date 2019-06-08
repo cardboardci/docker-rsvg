@@ -49,8 +49,8 @@ bats:
     - chmod +x /usr/local/bin/structure-test
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - structure-test -test.v -image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" tests/primary.yaml
-    - structure-test -test.v -image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" tests/metadata.yaml
+    - structure-test test --image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" --config tests/primary.yaml
+    - structure-test test --image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" --config tests/metadata.yaml
 
 ##
 ## Analyze
