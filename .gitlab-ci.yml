@@ -32,7 +32,7 @@ hadolint:
 build:
   stage: "Build"
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker build --pull --label org.label-schema.vendor="cardboardci" --label org.label-schema.name="rsvg" -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker push "$CI_REGISTRY_IMAGE"
 

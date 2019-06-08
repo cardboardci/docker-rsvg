@@ -9,5 +9,3 @@ RUN apt-get update \
 WORKDIR /ci
 RUN groupadd -r cardboardci && useradd --no-log-init -r -g cardboardci cardboardci
 USER cardboardci
-
-LABEL org.label-schema.vendor = "CardboardCI"
