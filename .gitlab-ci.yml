@@ -43,10 +43,7 @@ bats:
   stage: "Test"
   script:
     - apk add -U curl
-    - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test
-    - mv container-structure-test structure-test
-    - cp structure-test /usr/local/bin
-    - chmod +x /usr/local/bin/structure-test
+    - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && mv container-structure-test-linux-amd64 /usr/local/bin/structure-test
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
     - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - structure-test test --image "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" --config tests/primary.yaml
