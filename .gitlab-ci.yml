@@ -41,7 +41,6 @@ build:
 ##
 bats:
   stage: "Test"
-  image: ubuntu:latest
   script:
     - curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test
     - mv container-structure-test structure-test
