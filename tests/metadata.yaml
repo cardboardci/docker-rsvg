@@ -8,8 +8,8 @@ globalEnvVars:
 
 metadataTest:
   labels:
-    - key: 'com.example.vendor'
-      value: 'ACME Incorporated'
+    - key: 'org.label-schema.vendor'
+      value: 'CardboardCI'
   exposedPorts: []
   volumes: []
   entrypoint: []
