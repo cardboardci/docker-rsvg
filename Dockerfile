@@ -10,7 +10,6 @@ WORKDIR /ci
 RUN groupadd -r cardboardci && useradd --no-log-init -r -g cardboardci cardboardci
 USER cardboardci
 
-
 ##
 ## Image Metadata
 ##
@@ -28,8 +27,8 @@ LABEL maintainer="CardboardCI" \
     org.label-schema.vendor="cardboardci" \
     org.label-schema.architecture="amd64" \
     \
-    org.label-schema.summary="Rasterize SVGs." \
-    org.label-schema.description="Turn SVG files into raster images." \
+    org.label-schema.summary="Rasterize SVGs" \
+    org.label-schema.description="Turn SVG files into raster images" \
     \
     org.label-schema.url="https://gitlab.com/cardboardci/images/rsvg" \
     org.label-schema.changelog-url="https://gitlab.com/cardboardci/images/rsvg/releases" \
