@@ -1,5 +1,5 @@
 ---
-name: Docker RSvg
+name: Docker Rasterize SVG
 slug: docker-rsvg
 project: cardboardci
 namespace: []
@@ -8,3 +8,8 @@ license:
   name: MIT
 tags:
   - docker
+  - rsvg
+  - librsvg
+  - svg
+  - icons
+  - raster images
