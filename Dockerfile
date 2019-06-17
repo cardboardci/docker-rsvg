@@ -1,10 +1,13 @@
 FROM cardboardci/ci-core:disco
+USER root
 
 COPY provision/pkglist /cardboardci/pkglist
 RUN apt-get update \
     && xargs -a /cardboardci/pkglist apt-get install --no-install-recommends -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+USER cardboardci
 
 ##
 ## Image Metadata
